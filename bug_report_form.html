@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilez Bug Report Form</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for better scrolling on mobile */
+            min-height: 100vh;
+            padding: 2rem 1rem; /* Padding for mobile view */
+            box-sizing: border-box;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 600px; /* Max width for larger screens */
+            width: 100%; /* Full width on smaller screens */
+            margin: auto; /* Center the form */
+        }
+        .form-label {
+            @apply block text-gray-700 text-sm font-semibold mb-2 mt-4;
+        }
+        .form-input, .form-textarea, .form-select {
+            @apply shadow-sm appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out;
+        }
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-button {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 ease-in-out w-full mt-6;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-6">Tilez Bug Report</h1>
+        <p class="text-gray-600 text-center mb-8">Please fill out this form to report any bugs found while testing Tilez. Your detailed reports help us improve the game!</p>
+
+        <form id="bugReportForm" class="space-y-4">
+            <!-- Game Name (Pre-filled) -->
+            <div>
+                <label for="gameName" class="form-label">Game Name</label>
+                <input type="text" id="gameName" name="gameName" value="Tilez" readonly class="form-input bg-gray-100 cursor-not-allowed">
+            </div>
+
+            <!-- Tester Name/ID -->
+            <div>
+                <label for="testerId" class="form-label">Your Name / Tester ID <span class="text-red-500">*</span></label>
+                <input type="text" id="testerId" name="testerId" placeholder="e.g., John Doe / Tester007" required class="form-input">
+            </div>
+
+            <!-- Device Used -->
+            <div>
+                <label for="deviceUsed" class="form-label">Device Used <span class="text-red-500">*</span></label>
+                <input type="text" id="deviceUsed" name="deviceUsed" placeholder="e.g., iPhone 15, Samsung Galaxy S24" required class="form-input">
+            </div>
+
+            <!-- Operating System & Version -->
+            <div>
+                <label for="osVersion" class="form-label">Operating System & Version <span class="text-red-500">*</span></label>
+                <input type="text" id="osVersion" name="osVersion" placeholder="e.g., iOS 17.5, Android 14" required class="form-input">
+            </div>
+
+            <!-- Game Version -->
+            <div>
+                <label for="gameVersion" class="form-label">Game Version <span class="text-red-500">*</span></label>
+                <input type="text" id="gameVersion" name="gameVersion" placeholder="e.g., v1.0.1, Beta 2.1" required class="form-input">
+            </div>
+
+            <!-- Bug Title/Summary -->
+            <div>
+                <label for="bugTitle" class="form-label">Bug Title / Short Summary <span class="text-red-500">*</span></label>
+                <input type="text" id="bugTitle" name="bugTitle" placeholder="e.g., App crashes when opening settings" required class="form-input">
+            </div>
+
+            <!-- Bug Description -->
+            <div>
+                <label for="bugDescription" class="form-label">Detailed Bug Description & Steps to Reproduce <span class="text-red-500">*</span></label>
+                <textarea id="bugDescription" name="bugDescription" rows="5" placeholder="Please provide detailed steps to reproduce the bug, observed behavior, and expected behavior." required class="form-textarea"></textarea>
+            </div>
+
+            <!-- Severity -->
+            <div>
+                <label for="severity" class="form-label">Severity <span class="text-red-500">*</span></label>
+                <select id="severity" name="severity" required class="form-select">
+                    <option value="" disabled selected>Select Severity</option>
+                    <option value="critical">Critical (Game-breaking, blocks major functionality)</option>
+                    <option value="high">High (Major functionality impacted, workaround exists)</option>
+                    <option value="medium">Medium (Minor functionality impacted, UI issues)</option>
+                    <option value="low">Low (Cosmetic, minor text errors)</option>
+                </select>
+            </div>
+
+            <!-- Frequency -->
+            <div>
+                <label for="frequency" class="form-label">Frequency <span class="text-red-500">*</span></label>
+                <select id="frequency" name="frequency" required class="form-select">
+                    <option value="" disabled selected>Select Frequency</option>
+                    <option value="always">Always (100% reproducible)</option>
+                    <option value="often">Often (More than 50% of the time)</option>
+                    <option value="sometimes">Sometimes (Less than 50% of the time)</option>
+                    <option value="rarely">Rarely (Hard to reproduce, random)</option>
+                </select>
+            </div>
+
+            <!-- Bug Type (New field) -->
+            <div>
+                <label for="bugType" class="form-label">Bug Type <span class="text-red-500">*</span></label>
+                <select id="bugType" name="bugType" required class="form-select">
+                    <option value="" disabled selected>Select Bug Type</option>
+                    <option value="game-breaking">Game-Breaking (Prevents playing, crashes, severe data loss)</option>
+                    <option value="quality-of-life">Quality of Life (Minor annoyance, visual glitch, UI/UX improvement)</option>
+                </select>
+            </div>
+
+            <!-- Attachment (Optional) -->
+            <div>
+                <label for="attachment" class="form-label">Screenshot / Video (Optional)</label>
+                <input type="file" id="attachment" name="attachment" accept="image/*,video/*" class="form-input p-1">
+                <p class="text-xs text-gray-500 mt-1">Please provide a screenshot or a short video if possible.</p>
+            </div>
+
+            <!-- Hidden field for Date/Time Reported (Populated by JS) -->
+            <input type="hidden" id="reportDateTime" name="reportDateTime">
+
+            <!-- Submit Button -->
+            <button type="submit" class="form-button">Submit Bug Report</button>
+        </form>
+
+        <div id="messageBox" class="hidden mt-6 p-4 rounded-lg text-center" role="alert"></div>
+    </div>
+
+    <script>
+        // Get references to the form and message box
+        const bugReportForm = document.getElementById('bugReportForm');
+        const messageBox = document.getElementById('messageBox');
+        const reportDateTimeInput = document.getElementById('reportDateTime');
+
+        // Function to show a message in the message box
+        function showMessage(message, type = 'success') {
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800', 'bg-blue-100', 'text-blue-800');
+            if (type === 'success') {
+                messageBox.classList.add('bg-green-100', 'text-green-800');
+            } else if (type === 'error') {
+                messageBox.classList.add('bg-red-100', 'text-red-800');
+            } else {
+                messageBox.classList.add('bg-blue-100', 'text-blue-800'); // Info or default
+            }
+            // Make message box visible
+            messageBox.style.display = 'block';
+        }
+
+        // Add event listener for form submission
+        bugReportForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Set the current date and time
+            reportDateTimeInput.value = new Date().toLocaleString();
+
+            // Here you would typically send the form data to a server or an email service.
+            // For this example, we'll just log it to the console and show a success message.
+
+            const formData = new FormData(bugReportForm);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            console.log("Bug Report Submitted:", formObject);
+
+            // Simulate successful submission
+            showMessage("Thank you for your report! Your bug has been submitted successfully.", "success");
+
+            // Optionally, clear the form after successful submission
+            bugReportForm.reset();
+            // Hide the message box after a few seconds
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+                messageBox.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
